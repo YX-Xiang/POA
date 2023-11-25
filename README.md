@@ -31,18 +31,22 @@
 ## 拓扑排序
 
 ## 算法流程
-假定现在有一张 DAG 图 $G$（初始为一条链/序列）和一条待比较的序列 $s$。
+假定现在有一张 DAG 图 $G$（初始为一条链/序列）和一条待比较的序列 $s(|s|=m)$。
 
-1. 利用 BFS 得到 DAG 图的拓扑序，记录每个结点 $v_i$ 的前驱的下标列表 $L_i$。
+1. 利用 BFS 得到 DAG 图的拓扑序，记录每个结点 $v_i(1\leq i\leq n)$ 的前驱的下标列表 $L_i$。
 
 2. 利用动态规划找到 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的最佳对齐，需要遍历 $v_i$ 的前驱列表中的结点 $v_{L_{ik}}$ 。公式可以表示为：
 
-$$ dp[i][j] = \min_k 
-\begin{cases}
-    &dp[L_{ik}][j] + cost_{ins} \\
-    &dp[i][j-1] + cost_{del} \\
-    &dp[L_{ik}][j-1] + \delta(v_i, s_j) * cost_{sub}
-\end{cases}。
-$$
+    $$ dp[i][j] = \min_k 
+    \begin{cases}
+        &dp[L_{ik}][j] + cost_{ins} \\
+        &dp[i][j-1] + cost_{del} \\
+        &dp[L_{ik}][j-1] + \delta(v_i, s_j) * cost_{sub}
+    \end{cases}。
+    $$
 
-其中， $dp[i][j]$ 表示实现 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的对齐需要的最小代价。 $cost_{ins}$ ， $cost_{del}$ 和 $cost_{sub}$ 分别对应增删改需要付出的相应代价。 $\delta(\cdot, \cdot)$ 是判断两个字符是否相等的函数。
+    其中， $dp[i][j]$ 表示实现 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的对齐需要的最小代价。 $cost_{ins}$ ， $cost_{del}$ 和 $cost_{sub}$ 分别对应增删改需要付出的相应代价。 $\delta(\cdot, \cdot)$ 是判断两个字符是否相等的函数。
+
+    记录 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的最佳对齐对应的前一状态为 $M_{ij}$ 。
+
+3. 根据 $M_{nm}$ 不断回溯 $G$ 和 $s$ 的最优对齐所经历的状态。从初始状态开始，
