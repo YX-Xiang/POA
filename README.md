@@ -36,14 +36,13 @@
 1. 利用 BFS 得到 DAG 图的拓扑序，记录每个结点 $v_i(1\leq i\leq n)$ 的前驱的下标列表 $L_i$。
 
 2. 利用动态规划找到 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的最佳对齐，需要遍历 $v_i$ 的前驱列表中的结点 $v_{L_{ik}}$ 。公式可以表示为：
-
-    $$ dp[i][j] = \min_k 
-    \begin{cases}
-        &dp[L_{ik}][j] + cost_{ins} \\
-        &dp[i][j-1] + cost_{del} \\
-        &dp[L_{ik}][j-1] + \delta(v_i, s_j) * cost_{sub}
-    \end{cases}。
-    $$
+$$ dp[i][j] = \min_k 
+\begin{cases}
+    &dp[L_{ik}][j] + cost_{ins} \\
+    &dp[i][j-1] + cost_{del} \\
+    &dp[L_{ik}][j-1] + \delta(v_i, s_j) * cost_{sub}
+\end{cases}。
+$$
 
     其中， $dp[i][j]$ 表示实现 $v_{1\ldots i}$ 和 $s_{1\ldots j}$ 的对齐需要的最小代价。 $cost_{ins}$ ， $cost_{del}$ 和 $cost_{sub}$ 分别对应增删改需要付出的相应代价。 $\delta(\cdot, \cdot)$ 是判断两个字符是否相等的函数。
 
