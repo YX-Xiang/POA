@@ -44,4 +44,5 @@ $$ dp[i][j] = \min_k
     &dp[L_{ik}][j-1] + \delta(v_i, s_j) * cost_{sub}
 \end{cases}。
 $$
+
 其中，$cost_{ins}$，$cost_{del}$ 和 $cost_{sub}$ 分别对应增删改需要付出的相应代价值。$\delta(\cdot, \cdot)$ 是判断两个字符是否相等的函数。
