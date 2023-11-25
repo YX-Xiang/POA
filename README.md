@@ -4,7 +4,7 @@
 
 这就是生物学中经典的多序列比对（Multiple Sequence Alignment, MSA）问题。从得到的MSA中，可以推断出生物序列的同源性，并可以进行系统发育分析，以评估序列的共同进化起源。
 
-回顾双序列比对的动态规划算法：给定序列 $s_i$ 和 $s_j$，其中子序列 $s_{i,1}\ldots s_{i,x}$ 和 $s_{j,1}\ldots s_{j,y}$ 的比对，可以通过增、删、改分别从 $s_{i,1}\ldots s_{i,x}$ 和 $s_{j,1}\ldots s_{j,y-1}$ 的比对、$s_{i,1}\ldots s_{i,x-1}$ 和 $s_{j,1}\ldots s_{j,y}$ 的比对、$s_{i,1}\ldots s_{i,x-1}$ 和 $s_{j,1}\ldots s_{j,y-1}$ 的比对中进行状态转移。因此，可以从中选择最优的状态转移方案，确定最终的比对方案。
+回顾双序列比对的动态规划算法：给定序列 $s_i$ 和 $s_j$，其中子序列 $s_{i,1}\ldots s_{i,x}$ 和 $s_{j,1}\ldots s_{j,y}$ 的比对，可以通过增、删、改分别从 $s_{i,1}\ldots s_{i,x}$ 和 $s_{j,1}\ldots s_{j,y-1}$ 的比对、 $s_{i,1} \ldots s_{i,x-1}$ 和 $s_{j,1}\ldots s_{j,y}$ 的比对、 $s_{i,1} \ldots s_{i,x-1}$ 和 $s_{j,1}\ldots s_{j,y-1}$ 的比对中进行状态转移。因此，可以从中选择最优的状态转移方案，确定最终的比对方案。
 
 <div align=center>
     <img src="./pic/DP.png" style="zoom:50%">
